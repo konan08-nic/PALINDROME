@@ -1,0 +1,51 @@
+FUNCTION palindrome(mot:STRING, i:integer, j:integer) : BOOLEAN
+VAR:
+    n,k: integer;
+BEGIN
+
+    //Declaration des variables
+
+     n := mot.length;
+
+     // calcule de la mediane de la longueur : recherche du milieu entier de la longuer du mot
+     k := n / 2;
+     
+     IF (k % 2 != 0) THEN
+       k := k - 0.5
+
+      //comparer la premiere lettre à la dernière lettre  
+
+    IF (i == k) THEN 
+       return TRUE //on arrête si on atteind la lettre mediane si les lettres sont les meme
+       
+    ELSE IF (mot[i]== mot[j]) THEN
+        return palindrome(mot, i+1, j-1);
+
+    ELSE 
+         return FALSE;
+        
+    END_IF
+END
+
+
+BEGIN
+    VAR:
+     mot: STRING;
+     n,i,j: integer;
+     resultat: boolean;
+     
+     // saisie du mot
+     write("entrez un mot svp");
+     read(mot);
+
+     n: = mot.length;
+     i := 0;
+     j := n - 1;
+     resultat := palindrome(mot, i, j); //Appeler la fonction palindrome
+     
+     IF(resultat = TRUE) THEN
+       write("Le mot est palindrome"); //affichage du resultat
+     ELSE
+       write("Le mot n'est pas palindrome");
+     END_IF
+END
